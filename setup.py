@@ -1,5 +1,3 @@
-from typing import list
-
 from setuptools import find_packages, setup
 
 HYPHEN_E_DOT = "-e ."
