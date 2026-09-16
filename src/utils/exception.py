@@ -1,9 +1,10 @@
 import sys
 
+
 def error_message_detail(error, error_detail: sys):
     _, _, exc_tb = error_detail.exc_info()
     file_name = exc_tb.tb_frame.f_code.co_filename
-    error_message = "Error occurred in Python script name [{0}] line number [{1}] error message [{2}]".format(file_name, exc_tb.lineno, str(error))
+    error_message = f"Error occurred in Python script name [{file_name}] line number [{exc_tb.lineno}] error message [{error!s}]"
     return error_message
 
 class CustomException(Exception):

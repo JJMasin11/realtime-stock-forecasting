@@ -1,10 +1,10 @@
-from typing import List
+from typing import list
 
 from setuptools import find_packages, setup
 
 HYPHEN_E_DOT = "-e ."
 
-def get_requirements(file_path: str) -> List[str]:
+def get_requirements(file_path: str) -> list[str]:
     '''
     This function will return the list of requirements
     '''
