@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "realtime-stock-forecasting"
+version = "0.0.1"
+description = "Real-time stock price forecasting pipeline"
+authors = [{ name = "Jack Masin", email = "jack.j.masin@gmail.com"}]
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic",
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+ingestion = ["websockets", "confluent-kafka", "pandas_market_calendars", "requests"]
+streaming = ["pyspark"]
+feature-store = ["feast", "psycopg2-binary", "redis"]
+models = ["scikit-learn", "catboost", "xgboost", "lightgbm", "shap", "mlflow"]
+serving = ["fastapi", "uvicorn[standard]"]
+orchestration = ["apache-airflow"]
+frontend = ["streamlit", "streamlit-lightweight-charts-pro", "requests"]
+dev = ["ruff", "pytest", "pytest-cov"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
