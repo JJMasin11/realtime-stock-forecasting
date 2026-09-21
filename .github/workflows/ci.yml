@@ -13,5 +13,5 @@ jobs:
       - uses: actions/setup-python@v5 # Install Python
         with:
           python-version: "3.13"
-      - run: pip install -r requirements-dev.txt
+      - run: pip install -e ".[dev]"
       - run: ruff check . # Lint
