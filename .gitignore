@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Claude
+CLAUDE.md
+.claude/
+# Local data (raw backfill, features)
+data/

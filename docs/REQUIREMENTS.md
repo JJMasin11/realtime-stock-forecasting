@@ -118,7 +118,7 @@ There will be two feature stores, an offline Postgres database and an online Red
 | high_60min                | float     | Maximum close price over the last hour                            | Offline + Online |
 | volume_mean_15min         | float     | Average volume over the last fifteen minutes                      | Offline + Online |
 | minutes_since_market_open | integer   | Minutes elapsed since market open                                 | Offline + Online |
-| day_of_week               | string    | Day of the week                                                   | Offline + Online |
+| day_of_week               | integer   | Day of the week (0 = Monday, 6 = Sunday)                          | Offline + Online |
 | is_near_open              | boolean   | True if within the first 15 minutes of the session                | Offline + Online |
 | is_near_close             | boolean   | True if within the last 15 minutes of the session                 | Offline + Online |
 | next_close                | float     | Close price of the following interval (target variable)           | Offline only     |
@@ -243,7 +243,7 @@ Error responses are handled as follows:
 | 503    | No prediction available yet, or live data is stale |
 | 500    | Unexpected server error                            |
 
-A valid symbol with no data in the requested range returns `200` with 
+A valid symbol with no data in the requested range returns `200` with
 an empty array, rather than an error.
 
 ### 4.7 Frontend
@@ -388,15 +388,15 @@ The model is retrained daily after market close. Retraining is also triggered if
 
 ## 12. Risks / Open Questions
 
-- Retraining performance threshold (section 4.8, section 9) is not yet 
+- Retraining performance threshold (section 4.8, section 9) is not yet
   set; to be determined during initial model evaluation.
-- Spark Structured Streaming's Kafka connector has not yet been 
-  validated against Azure Event Hubs' Kafka-compatible endpoint; if 
-  incompatible, Kafka may need to be self-hosted in production instead 
+- Spark Structured Streaming's Kafka connector has not yet been
+  validated against Azure Event Hubs' Kafka-compatible endpoint; if
+  incompatible, Kafka may need to be self-hosted in production instead
   of using Event Hubs.
-- Twelve Data's licensing terms for displaying data (as opposed to 
-  internal/non-display use) have not been fully confirmed; relevant if 
+- Twelve Data's licensing terms for displaying data (as opposed to
+  internal/non-display use) have not been fully confirmed; relevant if
   backfilled data is ever surfaced on the frontend.
-- Twelve Data's available backfill depth for intraday history has not 
-  been confirmed; may constrain how much historical training data is 
+- Twelve Data's available backfill depth for intraday history has not
+  been confirmed; may constrain how much historical training data is
   available at project start.

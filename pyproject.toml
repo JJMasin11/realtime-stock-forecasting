@@ -11,12 +11,14 @@ requires-python = ">=3.11"
 dependencies = [
     "pydantic",
     "python-dotenv",
+    "pydantic-settings",
 ]
 
 [project.optional-dependencies]
-ingestion = ["websockets", "confluent-kafka", "pandas_market_calendars", "requests"]
+ingestion = ["websockets", "confluent-kafka", "pandas_market_calendars", "requests", "pandas"]
+backfill = ["twelvedata", "pandas", "numpy", "pandas_market_calendars", "pyarrow", "requests", "pyspark"]
 streaming = ["pyspark"]
-feature-store = ["feast", "psycopg2-binary", "redis"]
+feature-store = ["feast", "psycopg2-binary", "redis", "pyspark"]
 models = ["scikit-learn", "catboost", "xgboost", "lightgbm", "shap", "mlflow"]
 serving = ["fastapi", "uvicorn[standard]"]
 orchestration = ["apache-airflow"]
